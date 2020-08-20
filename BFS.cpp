@@ -46,6 +46,7 @@ void BreadthFirst::search(const pose &start, const pose &goal)
                     closed_list[next.x][next.y].visited = true;
                     closed_list[next.x][next.y].parent.x = expand.x;
                     closed_list[next.x][next.y].parent.y = expand.y;
+                    closed_list[next.x][next.y].move = move.move;
                 }
             }
         }
@@ -68,11 +69,12 @@ void BreadthFirst::draw_path()
         path[target->x][target->y] = '@';
         while (current->parent.x != ori->x || current->parent.y != ori->y)
         {
-            path[current->parent.x][current->parent.y] = '*';
+            path[current->parent.x][current->parent.y] = current->move;
             current = &closed_list[current->parent.x][current->parent.y];
         }
-        path[current->parent.x][current->parent.y] = '#';
+        path[current->parent.x][current->parent.y] = current->move;
     }
+    /* print path */
     for (auto row : path)
     {
         for (auto i : row)
@@ -80,3 +82,4 @@ void BreadthFirst::draw_path()
         cout << endl;
     }
 }
+

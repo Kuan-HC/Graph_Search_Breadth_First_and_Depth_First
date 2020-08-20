@@ -20,12 +20,14 @@ typedef struct
 {
     bool visited{false};
     pose parent{-1, -1};
+    char move{' '};
 } close_node;
 
 typedef struct
 {
     int x;
     int y;
+    char move;
 } Delta;
 
 class BreadthFirst
@@ -34,7 +36,7 @@ private:
     bool find_path{false};
     vector<vector<close_node>> closed_list;
     deque<pose> frontier;
-    const std::vector<Delta> delta_list = {{-1, 0}, {0, 1}, {0, -1}, {1, 0}}; /*move: up, right, left, down */
+    const std::vector<Delta> delta_list = {{-1, 0,'^'}, {0, 1,'>'}, {0, -1,'<'}, {1, 0,'v'}}; /*move: up, right, left, down */
 
     const pose* ori;
     const pose* target;

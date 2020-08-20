@@ -20,7 +20,7 @@ int main()
                                  {0, 1, 0, 0, 0, 0},
                                  {0, 1, 0, 0, 0, 0}};
 
-        /* set start and goal position */
+    /* set start and goal position */
     pose start{0, 0};
     pose goal{5, 5};
 
@@ -28,9 +28,8 @@ int main()
     *   Path Planning  function            *
     * *************************************/
     BreadthFirst map_1(grid);
-    map_1.search(start,goal);
+    map_1.search(start, goal);
     map_1.draw_path();
-
 
     return 0;
 }
