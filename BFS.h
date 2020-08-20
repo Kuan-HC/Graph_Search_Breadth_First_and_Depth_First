@@ -4,12 +4,11 @@
 #include <deque>
 #include <vector>
 #include <iostream>
-#include "main.h"
 
-using std::deque;
-using std::vector;
 using std::cout;
+using std::deque;
 using std::endl;
+using std::vector;
 
 typedef struct
 {
@@ -19,51 +18,32 @@ typedef struct
 
 typedef struct
 {
-    pose current;
-    pose parent;
-} node;
+    bool visited{false};
+    pose parent{-1, -1};
+} close_node;
+
+typedef struct
+{
+    int x;
+    int y;
+} Delta;
 
 class BreadthFirst
 {
 private:
-    pose ori;
-    pose target;
-    vector<vector<bool>> map;
-    vector<vector<bool>> closed;
-    int grid_length;
-    int grid_width;
+    bool find_path{false};
+    vector<vector<close_node>> closed_list;
     deque<pose> frontier;
-    
+    const std::vector<Delta> delta_list = {{-1, 0}, {0, 1}, {0, -1}, {1, 0}}; /*move: up, right, left, down */
+
+    const pose* ori;
+    const pose* target;
+    const vector<vector<bool>> *map;
 
 public:
-    BreadthFirst(pose &start, pose &goal, vector<vector<bool>> &map_input);
-    void search()
-    {
-        /* initialize parameters */
-        bool find_path = false;
-        /* add original into fronteir queue*/
-        frontier.emplace_back(ori);
-        /* start Breadth First Search */
-        while (!frontier.empty())
-        {
-            pose expand = frontier.front();
-            frontier.pop_front();
-
-            if(expand.x == target.x && expand.y == target.y)
-            {
-                find_path = true;
-                std::cout << "Goal achieved! "<< std::endl;
-                break;
-            }
-            else
-            {
-                
-            }
-            
-        }
-    }
-
-
+    BreadthFirst(const vector<vector<bool>> &map_input);
+    void search(const pose &start, const pose &goal);
+    void draw_path();
 };
 
 #endif /* _BFS_H_ */
