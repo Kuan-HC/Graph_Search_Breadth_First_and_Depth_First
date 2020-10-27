@@ -1,11 +1,13 @@
+project(BFS_Searching)
+
 cmake_minimum_required(VERSION 3.7)
 
-project(Greedy_Searching)
+add_definitions(-std=c++11)
 
-set(CMAKE_CXX_STANDARD 17)
+set(sources BFS.cpp main.cpp )
+
 set(CMAKE_BUILD_TYPE Debug)
 
-
-add_executable(a main.cpp BFS.cpp)
+add_executable(a ${sources})
 
 

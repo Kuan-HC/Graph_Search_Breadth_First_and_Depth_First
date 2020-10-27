@@ -4,7 +4,7 @@ BreadthFirst::BreadthFirst(const vector<vector<bool>> &map_input)
 {
     vector<close_node> tmp_row(map_input[0].size());
     vector<vector<close_node>> tmp_grid(map_input.size(), tmp_row);
-    closed_list = tmp_grid;
+    closed_list = std::move(tmp_grid);
     map = &map_input;
 }
 
