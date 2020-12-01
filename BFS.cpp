@@ -1,6 +1,6 @@
 #include "BFS.h"
 
-BreadthFirst::BreadthFirst(const vector<vector<bool>> &map_input)
+BFS::BFS(const vector<vector<bool>> &map_input)
 {
     vector<close_node> tmp_row(map_input[0].size());
     vector<vector<close_node>> tmp_grid(map_input.size(), tmp_row);
@@ -8,7 +8,7 @@ BreadthFirst::BreadthFirst(const vector<vector<bool>> &map_input)
     map = &map_input;
 }
 
-void BreadthFirst::search(const pose &start, const pose &goal)
+void BFS::search(const pose &start, const pose &goal)
 {
     ori = &start;
     target = &goal;
@@ -16,6 +16,7 @@ void BreadthFirst::search(const pose &start, const pose &goal)
     /* initialize parameters */
     int grid_height = (*map).size();
     int grid_width = (*map)[0].size();
+
 
     /* add original into fronteir queue*/
     frontier.emplace_back(start);
@@ -30,7 +31,7 @@ void BreadthFirst::search(const pose &start, const pose &goal)
         if (expand.x == goal.x && expand.y == goal.y)
         {
             find_path = true;
-            cout << "Path constructed! " << endl;
+            cout << "BSS Path constructed! " << endl;
             break;
         }
         else
@@ -55,7 +56,9 @@ void BreadthFirst::search(const pose &start, const pose &goal)
         cout << "Path can not be found!" << endl;
 }
 
-void BreadthFirst::draw_path()
+
+
+void BFS::draw_path()
 {
     vector<vector<char>> path(closed_list.size(), vector<char>(closed_list[0].size(), ' '));
 

@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "BFS.h"
+#include "DFS.h"
 
 #define length 6U
 
@@ -25,11 +26,16 @@ int main()
     pose goal{5, 5};
 
     /***************************************
-    *   Path Planning  function            *
+    *   Breadth First Path Planning        *
     * *************************************/
-    BreadthFirst map_1(grid);
-    map_1.search(start, goal);
-    map_1.draw_path();
+    BFS BFS(grid);
+    BFS.search(start, goal);
+    BFS.draw_path();
+
+    DFS DFS(grid);
+    DFS.search(start, goal);
+    DFS.draw_path();
+
 
     return 0;
 }

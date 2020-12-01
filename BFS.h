@@ -30,9 +30,9 @@ typedef struct
     char move;
 } Delta;
 
-class BreadthFirst
+class BFS
 {
-private:
+protected:
     bool find_path{false};
     vector<vector<close_node>> closed_list;
     deque<pose> frontier;
@@ -43,8 +43,12 @@ private:
     const vector<vector<bool>> *map;
 
 public:
-    BreadthFirst(const vector<vector<bool>> &map_input);
-    void search(const pose &start, const pose &goal);
+    /* constructor */
+    BFS(const vector<vector<bool>> &map_input);
+
+    virtual void search(const pose &start, const pose &goal);
+    void depth_first_search(const pose &start, const pose &goal);
+    
     void draw_path();
 };
 
